@@ -11,12 +11,6 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl_auto: create
+      ddl_auto: update
   H2:
     console.enabled: true
-  logging:
-    level:
-      org:
-        springframework:
-          web: DEBUG
-        hibernate: DEBUG

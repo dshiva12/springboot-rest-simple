@@ -2,6 +2,8 @@ package com.shiva.restsimple.controller;
 
 import com.shiva.restsimple.entity.Employee;
 import com.shiva.restsimple.service.EmployeeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.Optional;
 public class EmployeeController {
 
     private EmployeeService employeeService;
+
+    Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -24,6 +28,11 @@ public class EmployeeController {
 
     @GetMapping("employees")
     public List<Employee> getEmployees(){
+        logger.trace("A TRACE Message");
+        logger.debug("A DEBUG Message");
+        logger.info("An INFO Message");
+        logger.warn("A WARN Message");
+        logger.error("An ERROR Message");
         return employeeService.getAllEmployees();
     }
 
