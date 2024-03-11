@@ -15,13 +15,6 @@
                 %d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n
             </Pattern>
         </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-        <fileNamePattern>MyApp-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-        <maxFileSize>1MB</maxFileSize>
-        <maxHistory>30</maxHistory>
-        <totalSizeCap>10MB</totalSizeCap>
-        <cleanHistoryOnStart>true</cleanHistoryOnStart>
-        </rollingPolicy>
     </appender>
     <root level="info">
         <appender-ref ref="SAVE-TO-FILE"/>

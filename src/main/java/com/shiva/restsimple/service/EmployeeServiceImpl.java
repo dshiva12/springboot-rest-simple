@@ -1,6 +1,7 @@
 package com.shiva.restsimple.service;
 
 import com.shiva.restsimple.entity.Employee;
+import com.shiva.restsimple.exception.EmployeeException;
 import com.shiva.restsimple.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,14 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Optional <Employee> getAllEmployee(Long id) {
-        return employeeRepository.findById(id);
+    public Optional <Employee> getAllEmployee(Long id) throws EmployeeException {
+        Optional <Employee> employee= employeeRepository.findById(id);
+        if(employee.isPresent()) {
+            return employee;
+        } else {
+            throw new EmployeeException("Employee not found for Id ");
+        }
+
     }
 
     @Override
