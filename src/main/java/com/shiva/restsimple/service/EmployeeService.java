@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface EmployeeService {
     List<Employee> getAllEmployees();
 
-    Optional<Employee> getAllEmployee(Long id) throws EmployeeException;
+    Optional<Employee> getEmployee(Long id) throws EmployeeException;
 
     Employee addEmployee(Employee employee);
 

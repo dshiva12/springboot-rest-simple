@@ -41,12 +41,12 @@ public class EmployeeController {
     }
 
     @GetMapping("employee/{id}")
-    public Object getEmployee(@PathVariable Long id) {
+    public ResponseEntity getEmployee(@PathVariable Long id) {
         try {
-            return new ResponseEntity<>(employeeService.getAllEmployee(id), HttpStatus.OK);
+            return new ResponseEntity<>(employeeService.getEmployee(id), HttpStatus.OK);
         } catch (EmployeeException e) {
             logger.error(e.getMessage());
-            return new ApiError( HttpStatus.NO_CONTENT,e.getMessage(),null);
+            return new ResponseEntity<>(new ApiError( HttpStatus.NO_CONTENT,e.getMessage(),null),HttpStatus.NO_CONTENT);
         }
     }
     @PostMapping("employee")

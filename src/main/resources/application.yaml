@@ -7,10 +7,22 @@ spring:
     username: sa
     password: sa
   jpa:
-    database-platform : org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
       format_sql: true
       ddl_auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
   H2:
     console.enabled: true
+# added for actuator endpoints
+management:
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"

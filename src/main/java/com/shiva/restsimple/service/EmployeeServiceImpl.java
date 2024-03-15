@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Optional <Employee> getAllEmployee(Long id) throws EmployeeException {
+    public Optional <Employee> getEmployee(Long id) throws EmployeeException {
         Optional <Employee> employee= employeeRepository.findById(id);
         if(employee.isPresent()) {
             return employee;
