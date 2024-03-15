@@ -1,9 +1,13 @@
 package com.shiva.restsimple.controller;
 
 import com.shiva.restsimple.entity.Employee;
+import com.shiva.restsimple.exception.ApiError;
+import com.shiva.restsimple.exception.EmployeeException;
 import com.shiva.restsimple.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +41,13 @@ public class EmployeeController {
     }
 
     @GetMapping("employee/{id}")
-    public Optional<Employee> getEmployee(@PathVariable Long id){
-        return employeeService.getAllEmployee(id);
+    public ResponseEntity getEmployee(@PathVariable Long id) {
+        try {
+            return new ResponseEntity<>(employeeService.getEmployee(id), HttpStatus.OK);
+        } catch (EmployeeException e) {
+            logger.error(e.getMessage());
+            return new ResponseEntity<>(new ApiError( HttpStatus.NO_CONTENT,e.getMessage(),null),HttpStatus.NO_CONTENT);
+        }
     }
     @PostMapping("employee")
     public Employee addEmployee(@RequestBody Employee employee){
